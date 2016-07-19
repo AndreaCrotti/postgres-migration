@@ -5,17 +5,73 @@
 #+REVEAL_SPEED: fast
 #+EMAIL: andrea.crotti@iwoca.co.uk
 
-* Stats
+* Why
+
+[[./images/postgresql_versus_mysql.jpg]]
+
+* Why, really
+
+- Postgres
+
+#+BEGIN_SRC sql
+  SELECT DISTINCT ON (location) location, time, report
+      FROM weather_reports
+      ORDER BY location, time DESC;
+
+#+END_SRC
+
+#+BEGIN_SRC sql
+  SELECT X.* FROM no_chain_samplemodel as X
+         JOIN (SELECT user_id, MAX(timestamp) AS timestamp
+         FROM no_chain_samplemodel
+         GROUP BY user_id) AS Y
+         ON (X.user_id = Y.user_id and X.timestamp = Y.timestamp)
+         WHERE X.staff_id = %s
+
+#+END_SRC
+
+* How
+
+* What's the plan
+
+From
+
+#+BEGIN_SRC python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        ...
+     }
+}
+#+END_SRC
+
+#+BEGIN_SRC python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        ...
+     }
+}
+#+END_SRC
+
+* Done?
+
+[[./images/done_yet.png]]
+
+* A few numbers
 
 - 190k lines of Python code
 - 100 Apps
 - 383 tables to migrate at once
 
-
-* Why
-
-* What's the plan
-
 * Common problems
 
-* 
+* Tips for switchers
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+- *test* everything
+- never rely on order
+- split that monolith
