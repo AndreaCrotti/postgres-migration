@@ -1,0 +1,7 @@
+#+AUTHOR: Andrea Crotti
+#+TITLE: From MySQL to Postgres
+#+OPTIONS: num:nil ^:nil toc:nil
+#+REVEAL_TRANS: fade
+#+REVEAL_SPEED: fast
+#+EMAIL: andrea.crotti@iwoca.co.uk
+
