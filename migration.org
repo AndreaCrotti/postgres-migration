@@ -5,3 +5,17 @@
 #+REVEAL_SPEED: fast
 #+EMAIL: andrea.crotti@iwoca.co.uk
 
+* Stats
+
+- 190k lines of Python code
+- 100 Apps
+- 383 tables to migrate at once
+
+
+* Why
+
+* What's the plan
+
+* Common problems
+
+* 
