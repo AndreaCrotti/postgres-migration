@@ -1,15 +1,10 @@
-#+AUTHOR: Andrea Crotti
-#+TITLE: From MySQL to Postgres
+#+AUTHOR: Andrea Crotti @andreacrotti
+#+TITLE: Django: From MySQL to Postgres
 #+OPTIONS: num:nil ^:nil toc:nil timestamp:nil
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
+#+REVEAL_PLUGINS: notes
 #+EMAIL: andrea.crotti@iwoca.co.uk
-
-* iwoca
-
-Twitter: @andreacrotti
-
-[[./images/iwoca_homepage.png]]
 
 * Why
 
@@ -24,7 +19,7 @@ This sucks:
          JOIN (SELECT user_id, MAX(timestamp) AS timestamp
          FROM no_chain_samplemodel
          GROUP BY user_id) AS Y
-         ON (X.user_id = Y.user_id and X.timestamp = Y.timestamp)
+         ON (X.user_id = Y.user_id and X.timestamp = Y.timestamp)i
          WHERE X.staff_id = %s
 
 #+END_SRC
@@ -35,6 +30,15 @@ This is great:
 
 SELECT DISTINCT ON (user_id) FROM no_chain_samplemodel 
       WHERE timestamp <= '2017-01-01' ORDER BY user_id ASC, timestamp DESC;
+
+#+END_SRC
+
+With the Django ORM:
+
+#+BEGIN_SRC python
+
+  SampleModel.objects.distinct('user_id').\
+      filter(timestamp__gt=mydate).order_by('user_id', '-timestamp')
 
 #+END_SRC
 
@@ -90,11 +94,11 @@ Massive fintech Django project:
 [[./images/pgloader.png]]
 
 
-*No streaming*
+*No live replication* == *Downtime!!!*
 
 ** Very big tables
 
-- drop foreign keys (models.ForeignKey -> models.IntegerField)
+- drop foreign keys (ForeignKey → IntegerField)
 - adapt queries
 - write a database router
 
@@ -113,7 +117,7 @@ Massive fintech Django project:
 
 - *use* migrations for everything
 - *test* everything
-- never rely on implicit ordering
+- *NEVER* rely on implicit ordering
 - make Django apps really independent
 - split that monolith ASAP
 
@@ -126,3 +130,5 @@ Hofstadter's Database Migration Law:
 Migrating from MySQL to Postgres always takes longer than you expect, even when you take into account Hofstadter's Law.
 
 #+END_QUOTE
+
+@andreacrotti https://www.iwoca.co.uk/
