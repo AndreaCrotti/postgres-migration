@@ -1,9 +1,13 @@
 #+AUTHOR: Andrea Crotti
 #+TITLE: From MySQL to Postgres
-#+OPTIONS: num:nil ^:nil toc:nil
+#+OPTIONS: num:nil ^:nil toc:nil timestamp:nil
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+EMAIL: andrea.crotti@iwoca.co.uk
+
+* iwoca
+
+[[./images/iwoca_homepapge.png]]
 
 * Why
 
@@ -11,14 +15,7 @@
 
 * Why, really
 
-- Postgres
-
-#+BEGIN_SRC sql
-  SELECT DISTINCT ON (location) location, time, report
-      FROM weather_reports
-      ORDER BY location, time DESC;
-
-#+END_SRC
+This sucks:
 
 #+BEGIN_SRC sql
   SELECT X.* FROM no_chain_samplemodel as X
@@ -30,11 +27,18 @@
 
 #+END_SRC
 
+This is great:
+
+#+BEGIN_SRC sql
+
+SELECT DISTINCT ON (user_id) FROM no_chain_samplemodel 
+      WHERE timestamp <= '2017-01-01' ORDER BY user_id ASC, timestamp DESC;
+
+#+END_SRC
+
 * How
 
-* What's the plan
-
-From
+From:
 
 #+BEGIN_SRC python
 DATABASES = {
@@ -44,6 +48,8 @@ DATABASES = {
      }
 }
 #+END_SRC
+
+To:
 
 #+BEGIN_SRC python
 DATABASES = {
@@ -61,10 +67,36 @@ DATABASES = {
 * A few numbers
 
 - 190k lines of Python code
-- 100 Apps
-- 383 tables to migrate at once
+- > 100 Apps
+- 383 tables to migrate
+- 3000 tests running in 3 minutes
 
-* Common problems
+* What's the plan
+
+** Data migration
+
+** Code changes
+
+- get Postgres on CI (stable tests)
+- search for untested raw queries
+- manual testing on real data
+
+** Example
+
+[[./images/notebook.png]]
+
+* One example
+
+#+BEGIN_SRC python
+  class Blog(models.Model):
+      title = models.CharField(max_length=4)
+
+
+  # the factory defined as
+
+  class BlogFactory(factory.DjangoModelFactory):
+      title = factory.Sequence(lambda n: "title_%d" % n)
+#+END_SRC
 
 * Tips for switchers
 
