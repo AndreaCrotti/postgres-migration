@@ -7,6 +7,8 @@
 
 * iwoca
 
+Twitter: @andreacrotti
+
 [[./images/iwoca_homepapge.png]]
 
 * Why
@@ -38,7 +40,7 @@ SELECT DISTINCT ON (user_id) FROM no_chain_samplemodel
 
 * How
 
-From:
+*From this*
 
 #+BEGIN_SRC python
 DATABASES = {
@@ -49,7 +51,7 @@ DATABASES = {
 }
 #+END_SRC
 
-To:
+*To this*
 
 #+BEGIN_SRC python
 DATABASES = {
@@ -66,16 +68,28 @@ DATABASES = {
 
 * A few numbers
 
+Massive fintech Django project:
+
 - 190k lines of Python code
 - > 100 Apps
 - 383 tables to migrate
-- 3000 tests running in 3 minutes
+- 3000 tests running in ~3 minutes
 
 * What's the plan
 
-** Data migration
+- adapt code
+- migrate data
+- profit!
 
-** Code changes
+* Data migration
+
+Pgloader to the rescue:
+
+[[./images/pgloader.png]]
+
+*No streaming*
+
+* Code changes
 
 - get Postgres on CI (stable tests)
 - search for untested raw queries
@@ -106,4 +120,4 @@ DATABASES = {
 
 - *test* everything
 - never rely on order
-- split that monolith
+- split that monolith ASAP
