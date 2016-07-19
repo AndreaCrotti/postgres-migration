@@ -9,7 +9,7 @@
 
 Twitter: @andreacrotti
 
-[[./images/iwoca_homepapge.png]]
+[[./images/iwoca_homepage.png]]
 
 * Why
 
@@ -83,11 +83,20 @@ Massive fintech Django project:
 
 * Data migration
 
-Pgloader to the rescue:
+** Pgloader
+
+*Pgloader* to the rescue:
 
 [[./images/pgloader.png]]
 
+
 *No streaming*
+
+** Very big tables
+
+- drop foreign keys (models.ForeignKey -> models.IntegerField)
+- adapt queries
+- write a database router
 
 * Code changes
 
@@ -95,29 +104,15 @@ Pgloader to the rescue:
 - search for untested raw queries
 - manual testing on real data
 
-** Example
+** Regression testing
 
 [[./images/notebook.png]]
 
-* One example
-
-#+BEGIN_SRC python
-  class Blog(models.Model):
-      title = models.CharField(max_length=4)
-
-
-  # the factory defined as
-
-  class BlogFactory(factory.DjangoModelFactory):
-      title = factory.Sequence(lambda n: "title_%d" % n)
-#+END_SRC
 
 * Tips for switchers
 
-#+BEGIN_NOTES
-
-#+END_NOTES
-
 - *test* everything
-- never rely on order
+- never rely on implicit ordering
+- make Django apps really independent
 - split that monolith ASAP
+- *use* migrations for everything
