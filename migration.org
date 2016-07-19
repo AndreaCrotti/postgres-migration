@@ -111,8 +111,8 @@ Massive fintech Django project:
 
 * Tips for switchers
 
+- *use* migrations for everything
 - *test* everything
 - never rely on implicit ordering
 - make Django apps really independent
 - split that monolith ASAP
-- *use* migrations for everything
