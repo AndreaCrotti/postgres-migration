@@ -116,3 +116,13 @@ Massive fintech Django project:
 - never rely on implicit ordering
 - make Django apps really independent
 - split that monolith ASAP
+
+* Conclusions
+
+#+BEGIN_QUOTE
+
+Hofstadter's Database Migration Law:
+
+Migrating from MySQL to Postgres always takes longer than you expect, even when you take into account Hofstadter's Law.
+
+#+END_QUOTE
