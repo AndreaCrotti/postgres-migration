@@ -1,6 +1,6 @@
 #+AUTHOR: Andrea Crotti @andreacrotti
 #+TITLE: Django: From MySQL to Postgres
-#+OPTIONS: num:nil ^:nil toc:nil timestamp:nil
+#+OPTIONS: num:nil ^:nil toc:nil timestamp:nil reveal_single_file:t
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+REVEAL_PLUGINS: notes
